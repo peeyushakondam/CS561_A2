@@ -46,6 +46,11 @@ paths:
         description: "API key"
         required: true
         type: "string"
+      - name: "token"  
+        in: "query"
+        description: "enter token"
+        required: true
+        type: "string"
       responses:
         "200":
           description: "Success"
@@ -62,6 +67,12 @@ paths:
       operationId: "get_hello"
       produces:
       - "application/json"
+      parameters:
+      - name: "token"  
+        in: "query"
+        description: "enter token"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Hello! How are you?"
