@@ -1,0 +1,106 @@
+swagger: "2.0"
+info:
+  description: "A swagger doc for these three endpoints:
+  
+`GET /v1/weather` —mocking GET /data/2.5/weather
+
+`GET /v1/hello`  —will greet you with some message
+
+`GET /v1/auth` -will authorize the user"
+  version: "1.0.0"
+  title: "Assignment 4 Swager Doc"
+  contact:
+    email: "kondamp@oregonstate.edu"
+  license:
+    name: "myLicense"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath: "/v1"
+tags:
+- name: "Peeyusha"
+  description: "Know more"
+  #externalDocs:
+   # description: "Find out more"
+    #url: "https://github.com/pavan3008"
+schemes:
+- "http"
+paths:
+  /weather:      
+    get:
+      tags:
+      - "user"
+      summary: "Know temperature of some place"
+      description: "Fatch current Temperature by entering your API id and name of the city"
+      operationId: "getWeather"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Name"
+        in: "query" 
+        description: "City name"
+        required: true
+        type: "string"
+      - name: "API Key"  
+        in: "query"
+        description: "API key"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            type: "string"
+        "400":
+          description: "Invalid API Key, please enter the correct one"
+  /hello:
+    get:
+      tags:
+      - "user"
+      summary: "Greetings!"
+      description: ""
+      operationId: "get_hello"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Hello! How are you?"
+        400:
+          description: "Bad request"
+  
+  /auth:
+    post:
+      tags:
+      - "user"
+      summary: "Get your token to login"
+      description: ""
+      operationId: "userlogin"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "Details"
+        description: "Enter your username and password"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "Logged in Successfully"
+        400:
+          description: "Bad request"
+        401:
+          description: "You're not authorized to use the services"
+        
+          
+definitions:
+  User:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      password:
+        type: "string"
+        description: "Get Token"
+    xml:
+      name: "User"
+  
