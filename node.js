@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+const pathToSwaggerUi = "/home/ec2-user/swagger-ui/dist"
+app.use(express.static(pathToSwaggerUi))
 
 
 app.get('/v1/weather',get_weather_v1)
